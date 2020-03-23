@@ -1,26 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class helicopter : MonoBehaviour {
-
-	[SerializeField] AudioClip heliSound;
-	private AudioSource my_audioSource;
-	bool called;
+public class Helicopter : MonoBehaviour {
+	
+	private bool called = false;
+	private Rigidbody rigidBody;
 
 	// Use this for initialization
 	void Start () {
-		my_audioSource = GetComponent<AudioSource>();
-		called = false;
+		rigidBody = GetComponent<Rigidbody> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.H) && called == false)
-		{
-			Debug.Log("heli is coming");
-			my_audioSource.Play();
-			called = true;
-		}
+
+	void OnDispatchHelicopter () {
+		Debug.Log ("Helicopter called");
+		rigidBody.velocity = new Vector3 (0,0,50f);
+		called = true;
 	}
 }
